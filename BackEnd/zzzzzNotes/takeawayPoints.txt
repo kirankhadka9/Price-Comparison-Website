@@ -1,0 +1,33 @@
+
+//                              code:
+//c : db ma data halnu          =>post
+//r : db ko data read garnu     => get
+//u : update db content         =>patch
+//d : delete db content         =>delete
+
+//making API : 
+// frontend request backend ,backend gives response according to that request ,this is known as making API.
+//APIs are used for communication between server and client side(browser).
+
+//         route ? query
+// url= localhost:8000?name=suraj&age=21&isMarried=false
+// url= route ? query
+// route =localhost:8000/product/price/spec
+// route= baserUrl/routeParameter1//routeParameter2/routeParameter3
+
+
+-------------
+MIDDLEWARES
+
+middleware are the function which has req, res and next
+to trigger another middleware, we have to call next()
+
+two types of middleware
+normal middleware
+        (req, res, next)=>{}
+        to trigger next middleware we have to call next()
+
+error middleware
+        (err, req, res, next)=>{}
+        to trigger next error middleware, we have to call next("someValue")
+

@@ -1,0 +1,58 @@
+let password = "sun123";
+let hashPassword = await bcrypt.hash(password,10);
+console.log(hashPassword);
+
+let hashPassword="$2b$10$xS03a7SB2rFP0G1qMiVSVuoW1GPSSwL0CsHBHFCDmKrSXdh6rymd2";
+let password="sun123";
+
+let isValidPassword=await bcrypt.compare(password,hashPassword);
+console.log(isValidPassword);
+----------------------------------
+token generation
+let infoObj ={
+     id :"12345678"
+};
+let secretKey="learnExpress";
+let expiryInfo={
+      expiresIn:"365d"
+};
+let token = jwt.sign(infoObj,secretKey,expiryInfo);
+console.log(token);
+
+
+
+let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiU3VyYWoiLCJhZ2UiOjIyLCJpYXQiOjE3MDIwMjE5MDQsImV4cCI6MTczMzU1NzkwNH0.Inf22qpekTDEIKBdRepBJ8fFvC7V9W9xKX51Ph4TG_E";
+
+try {
+      let infoObj = jwt.verify(token,"learnExpress");//yo infoObj variable ho jasle yedi true vayo vaney value pass garera lerauxa of infoObj(token ko)
+      console.log(infoObj);    
+} catch (error) {
+      console.log(error.message);
+}
+to be verified:
+token must be made from given secretKey
+must not expire
+
+if token is valid=>infoObj
+if not valid =>error
+-----------------------------
+let files = [
+        {
+          destination: "./public",
+          filename: "abc.jpg",
+        },
+        {
+          destination: "./public",
+          filename: "nitan.jpg",
+        },
+        {
+          destination: "./public",
+          filename: "ram.jpg",
+        },
+      ];
+
+let arr=files.map((value,i)=>{
+      return `http//localhost:8001/${value.filename}`;
+
+})
+console.log(arr)

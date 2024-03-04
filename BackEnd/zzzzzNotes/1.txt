@@ -1,0 +1,147 @@
+----------------------------------------
+###design process:
+1.Schema design : object define
+2.Model
+3.Controller
+4.Router
+---Dynamic route lai jailey last ma rakhney.
+5.Index
+--------
+//schema design: 
+->data manipulation:lower case,upper case,trim,default
+->data validation
+--------------------------------------
+# searching ma value matter hunxa , type matter hudaina
+
+# sort(): unlike js mongodb sorting works for number
+-sorting:
+-let result = await Webuser.find({}).sort("name"); //ascending sorting according to name
+-let result = await Webuser.find({}).sort("-name"); //descending sorting according to name
+---
+-find has control over the object where as select has control over the object property
+# select(): determines which property to show
+-
+- (id) ko value by default awuxa and to remove it add -_id 
+-----------
+#skip(): kati le skip garney?
+-find({}).skip("3"): suruko 3 ta skip garney
+-------
+#limit():kati wata dhekhauney?
+-find({}).limit("3"): suruko 3 ta show garney
+---------
+#find({}).limit("3").skip("3"): >>NOTE:suruma skip() execute hunxa ani matra limit()
+
+####     ORDER:  ####
+>   FIND,SORT,SELECT,SKIP,LIMIT   <
+------------------------------------------------------
+//HASHING:
+-> npm i bcrypt // pck install garna parxa
+-> password: sun@123 : hashing changes it to 124ihqoh(hash password) and store to db
+->bcrypt ko agadi await ;
+----------------------------------------------------
+
+//TOKEN:(package:json web token i.e npm i json wen token)
+2 parts:
+
+>i:generate
+-detail:infoObj
+-logo:secretKey
+-expiry info:expiryInfo
+
+>ii:validate
+-//token must be made from given secretKey
+//must not expire
+
+//if token is valid=>infoObj
+//if not valid =>error
+
+let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiU3VyYWoiLCJhZ2UiOjIyLCJpYXQiOjE3MDIwMjE5MDQsImV4cCI6MTczMzU1NzkwNH0.Inf22qpekTDEIKBdRepBJ8fFvC7V9W9xKX51Ph4TG_E";
+
+try {
+      let infoObj = jwt.verify(token,"learnExpress");//yo infoObj variable ho jasle yedi true vayo vaney value pass garera lerauxa of infoObj(token ko)
+     console.log(infoObj);    
+} catch (error) {
+       console.log(error.message);
+ }
+------------------------------
+
+ //FILE handling:
+ -static folder: static folder ko files link bata get garna milxa.
+ index.js:expressApp.use(express.static("./public"));
+ http://localhost:8001/song.mp3 
+ http://localhost:8001/image/p1.jpg (public=>image folder vitra xa vaney)
+ http://localhost:8001/p1.jpg 
+ yeslai browser ma run garney
+
+//One request can have only one response
+      res.json("firstRouter post method.")
+      res.json("firstRouter post method.")
+      yesari dueta hunu hunna eutai ko.
+
+//    req pani object ko rup ma hunxa.
+
+
+//-------->>form-data<<<
+//in form data we can get file information through req.files whereas we can get other iformation via req.body  
+
+
+
+----------------------------------
+>>>>>>>status code: postman ko output ma status dinxa being either success or failure
+i: success:(2XX family):
+      get, delete=>200
+      post,patch=>201
+
+ii: failure:(4XX family):
+      not found:404
+      conflict:409
+      aruma : 400
+---------------------------      
+>>  .env:
+(code ko part haina)
+-always make .env file in root folder
+-in .env we define special variable(credentials,ports,links)
+-variable ko name always in uppercase
+-YESMA PATHAKO SABAI VALUE STRING MA HUNXA
+-
+-variable jun file ma call gareko xa tya - config() garnu parxa
+-config() import ni garney
+
+----------------------------------
+
+      >> register:
+      -data liney->hash  pw-> save in db->email send(user controller ko create ma xa)
+
+
+---------------
+
+
+      >>login:
+      email,pw(enter)
+      check if email exist and if exist?(check)
+      if mtch generate token(generate)
+      send toke to postman
+
+-------------------------------------------------
+            >> my-profile
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  --------------------------------
+          >CORS:
+          CROSS 
+          ORIGIN (API)
+          RESOURCE 
+          SHARING          

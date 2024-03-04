@@ -1,0 +1,105 @@
+>>>LOGIN MANAGMENT : 
+
+1)register
+-verify
+2)login
+3)my profile
+4)my profile update
+5)update password
+6)forgot and reset password
+7)delete user
+8)read all user
+9)read specific user
+
+
+---------------------------------------------------------
+//////REGISTER:
+ ------
+     1)register : save data to db
+           -fullName
+           -email
+           -pw
+           -dob
+           -gender
+           -role=>superAdmin,admin,customer.....
+           -isVerifiedEmail :(initially set to false)//yo section tricky xa , yeslai frontend bata genuine email xa vaney true parxam.
+
+
+           
+     2)verify email:
+        -postman sends token
+        -get token
+        -verify token
+        -get _id from token
+        -make isVerifiedEmail : true
+-------------------------------------------------------------------------------
+//////////////-----LOGIN:
+
+        - email ad pw (from postman)
+        -check if that email exist (if email doesn't exist throw error).
+        -check if the email is verified (if not verified throw error)
+        -check if pw match (if not match throw error)
+        -generate token(attach (hidden)_id along with token)
+        -send token to postman/frontend.
+------------------------------------------------------------------------------
+/////////////////--MY-profile 
+            
+            -two parts:
+
+            >>>initial design isAuth middleware(in middleware) as its used for others too and call it .here:
+                 -pass token from postman
+                 -get token from postman
+                 -verify token (if invalid=>error)
+                 -get _id from token
+                 -next();
+
+            >> 2nd step :(in myProfile (in controller), find the detailes bu using the _id)     
+
+            they both will act as middleware where isAuth will send req._id to myProfile.
+------------------------------------------------------------------------------------
+////////////////////UPDATE PROFILE:
+                    -mathi ko jastai.....
+                    -pass token from postman
+                    -pass that token via isAuthenticated middleware
+                    -get _id
+
+                    -get data from body
+                    -delete email
+                    -delete password
+
+                    -update profile(except email and password)
+                    -send response
+----------------------------------------------------------------------------------
+//////////////////////     UPDATE PASSWORD:
+                     -pass token
+                     -isAuthenticated 
+                     -  _id
+                     -get _id
+                     -to update : get body from postman
+                                  -old password
+                                  -new password
+
+                     -check old pw match with database pw (if not =>error)
+                     -if match hash new pw and save to db.
+                     -send response
+-----------------------------------------------------------------------
+////////////////////  FORGOT PASSWORD PROCESS:
+
+       1: FORGOT PASSWORD
+              -pass email from postman
+              -get email
+              -check if email match in db (if not throw with status code 404)
+              -send email with link (frontend link with token)
+              -send response
+
+       2: RESET PASSWORD:    
+              -pass token via postman
+              -pass password from postman    
+              -pass through isAuthenticated  
+              -get _id
+              -hash password
+              -update that _id
+              -send response                     
+
+
+

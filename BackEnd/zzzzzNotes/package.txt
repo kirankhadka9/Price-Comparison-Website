@@ -1,0 +1,38 @@
+initially: npm init -y
+>>>package installed:(via terminal)
+
+i:npm i express
+ii:npm i mongoose
+iii:npm i bcrypt
+iv:npm i jsonwebtoken
+v: npm i multer
+vi: npm i nodemailer
+vii:npm i dotenv
+viii:npm i cors
+----------------------------------------------------
+initially :
+node js
+terminal ma:
+npm init -y
+json pkg awuxa (no dependency)
+
+
+>>>  npm i express (first package):node_modules etc awuxa ani.
+//package.json ma:
+//"type":"module"   ->yo halnai parxa (i.e .mjs ko feature haru support garxa) 
+
+// in express code run garna : npm run start or npm start
+
+//npm i express : express package haru download gardinxa
+//note: suruma kunai dependency hudaina but nmp i express paxi dependency thapinxa
+//now aba hamro application express pkg sanga dependent xa.
+
+--------------------------------------------------------------------------
+// npm i express : express package haru download gardinxa
+// npm i mongoose : in terminal to install mongo package
+// npm i bcrypt : for password hashing
+// npm i jsonwebtoken : for token generation and validation.
+// npm i multer : it is a pkg which takes images from postman and add img to public folder
+// npm i nodemailer : it's a pkg that isused for automatially sending mail after api hit
+// npm i dotenv : .env ko variable run garna +
+// npm i cors : to enable cross platform api hit/sharing (i.e frontend le hit hanna pauxa api lai)

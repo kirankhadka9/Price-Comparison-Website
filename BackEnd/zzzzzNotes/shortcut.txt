@@ -1,0 +1,11 @@
+shortcuts:
+
+>alt+shift+o: unused import haruhatauxa and import lai milara rakhxa;
+
+>shift+alt+f :format document
+
+>ctrl + d :  select next
+
+
+
+
