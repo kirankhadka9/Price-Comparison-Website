@@ -25,20 +25,20 @@ const AdminRegister = () => {
       email: email,
       password: password,
     };
-    // console.log(data)
 
-    //adding role
+    // Adding role
     data = {
       ...data,
       role: "admin",
-    }; //note data update matra garna khojeko ho so let narakhney
+    };
+
     try {
       let result = await axios({
         url: `http://localhost:8001/web-users`,
         method: "POST",
         data: data,
       });
-      console.log(data);
+
       setFullName("");
       setEmail("");
       setPassword("");
@@ -52,18 +52,16 @@ const AdminRegister = () => {
       toast.error(error.message);
     }
   };
+
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
+    <div className="flex items-center justify-center h-screen bg-gradient-to-r from-blue-500 to-lavender-500 bg-opacity-80">
+    <ToastContainer />
       <ToastContainer />
-      <div className="bg-white p-8 rounded shadow-md">
-        <h1 className="text-2xl font-semibold mb-4">Registration Form</h1>
-        <form onSubmit={onSubmit} className="space-y-4">
-          {/* Name */}
+      <div className="bg-white p-8 rounded-md bg-opacity-80 shadow-md">
+        <h1 className="text-3xl font-semibold mb-4">Registration Form</h1>
+        <form onSubmit={onSubmit} className="space-y-4 w-full">
           <div>
-            <label
-              htmlFor="name"
-              className="block text-sm font-medium text-gray-600"
-            >
+            <label htmlFor="name" className="text-sm text-gray-600">
               Name:
             </label>
             <input
@@ -76,12 +74,8 @@ const AdminRegister = () => {
             />
           </div>
 
-          {/* Date of Birth */}
           <div>
-            <label
-              htmlFor="dob"
-              className="block text-sm font-medium text-gray-600"
-            >
+            <label htmlFor="dob" className="text-sm text-gray-600">
               D.O.B:
             </label>
             <input
@@ -94,12 +88,8 @@ const AdminRegister = () => {
             />
           </div>
 
-          {/* Gender */}
           <div>
-            <label
-              htmlFor="gender"
-              className="block text-sm font-medium text-gray-600"
-            >
+            <label htmlFor="gender" className="text-sm text-gray-600">
               Select Gender:
             </label>
             <select
@@ -116,12 +106,8 @@ const AdminRegister = () => {
             </select>
           </div>
 
-          {/* Email */}
           <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-600"
-            >
+            <label htmlFor="email" className="text-sm text-gray-600">
               E-mail:
             </label>
             <input
@@ -134,12 +120,8 @@ const AdminRegister = () => {
             />
           </div>
 
-          {/* Password */}
           <div>
-            <label
-              htmlFor="pw"
-              className="block text-sm font-medium text-gray-600"
-            >
+            <label htmlFor="pw" className="text-sm text-gray-600">
               Password:
             </label>
             <input
@@ -169,4 +151,5 @@ const AdminRegister = () => {
     </div>
   );
 };
+
 export default AdminRegister;

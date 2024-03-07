@@ -18,7 +18,7 @@ const AdminVerify = () => {
           "Authorization":`Bearer ${token}`
         }
       })
-      navigate("/admin/login")
+      navigate("/login")
       
     } catch (error) {
       

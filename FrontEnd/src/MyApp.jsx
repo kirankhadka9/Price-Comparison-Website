@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import "./App.css";
 import Fot from "./Components/Footer/Fot.jsx";
 import AdminLogin from "./Components/Login Management/AdminLogin.jsx";
@@ -20,45 +20,40 @@ import ReadSpecificProduct from "./Components/products/ReadSpecificProduct.jsx";
 export let GlobalVariableContext = createContext();
 
 const MyApp = () => {
-  //let token = localStorage.getItem("token")
-  let [token, setToken] = useState(localStorage.getItem("token"));
-  const [results, setResults] = useState([]);
+  const [token, setToken] = useState(localStorage.getItem("token"));
+  const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <div className="AppM min-h-screen flex flex-col">
-    <GlobalVariableContext.Provider
-      value={{ token: token, setToken: setToken }}
-    >
-      <div className="App flex-grow">
+      <GlobalVariableContext.Provider
+        value={{ token: token, setToken: setToken }}
+      >
+        <div className="App flex-grow">
           <Navbar />
           
-          <SearchBar />
+          {location.pathname === '/' && <SearchBar />}
 
           <ReactRouter />
 
           <Routes>
             <Route path="/" element={<Home />} />
-
             <Route path="/get-product" element={<ReadAllProduct />} />
             <Route path="/get-product/:id" element={<ReadSpecificProduct />} />
-
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
-
             <Route path="/profile" element={<AdminProfile />} />
             <Route path="/update/:id" element={<AdminProfileUpdate />} />
             <Route path="/update/password" element={<AdminPasswordUpdate />} />
-
             <Route path="/login" element={<AdminLogin />} />
             <Route path="/register" element={<AdminRegister />} />
             <Route path="/logout" element={<AdminLogout />} />
           </Routes>
         </div>
 
-       <div >
-       <Fot />
-       </div>
-
+        <div>
+          <Fot />
+        </div>
       </GlobalVariableContext.Provider>
     </div>
   );

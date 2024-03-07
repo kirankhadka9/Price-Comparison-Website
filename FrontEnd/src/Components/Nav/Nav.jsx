@@ -44,9 +44,9 @@ export const Navbar = () => {
           <li>
             <NavLink to="/about">About</NavLink>
           </li>
-          {/* <li>
+          <li>
             <NavLink to="/contact">Contact</NavLink>
-          </li> */}
+          </li>
           {token ? (
             <>
             <li>
