@@ -33,10 +33,10 @@ const Fot = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center pb-6 ml-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center pb-6 ml-8 mt-3">
           <div className="text-gray-400 mb-4">
-            <h3 className="text-lg font-semibold mb-2">Popular Categories</h3>
-            <ul>
+            <h3 className="text-sl font-semibold mb-2">Popular Categories</h3>
+            <ul className="text-sm">
               <li><Link to="/category/apple" className="hover:text-teal-400">Apple</Link></li>
               <li><Link to="/category/samsung" className="hover:text-teal-400">Samsung</Link></li>
               <li><Link to="/category/dell" className="hover:text-teal-400">Dell</Link></li>
@@ -44,20 +44,18 @@ const Fot = () => {
           </div>
 
           <div className="text-gray-400 mb-4">
-            <h3 className="text-lg font-semibold mb-2">Helpful Links</h3>
-            <ul>
+            <h3 className="text-sl font-semibold mb-2">Helpful Links</h3>
+            <ul className="text-sm">
               <li><Link to="/faq" className="hover:text-teal-400">FAQ</Link></li>
               <li><Link to="/terms" className="hover:text-teal-400">Terms of Service</Link></li>
               <li><Link to="/privacy-policy" className="hover:text-teal-400">Privacy Policy</Link></li>
             </ul>
           </div>
-
-         
         </div>
 
-        <div className="flex flex-col items-end mt-4">
+        <div className="flex flex-col items-end mt-1 text-sl">
           <div>
-            <span>© 2022 . All rights reserved.</span>
+            <span>© 2022. All rights reserved.</span>
           </div>
         </div>
       </div>
