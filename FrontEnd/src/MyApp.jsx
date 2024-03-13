@@ -17,6 +17,9 @@ import SearchBar from './Components/SearchBar/SearchBar.jsx';
 import ReadAllProduct from './Components/products/ReadAllProducts.jsx';
 import ReadSpecificProduct from './Components/products/ReadSpecificProduct.jsx';
 import Dropdown from './Components/Dropdown/Dropdown';
+import Terms from './Components/Footer/Term.jsx';
+import Policy from './Components/Footer/Policy.jsx';
+import Faq from './Components/Footer/Faqq.jsx';
 
 export let GlobalVariableContext = createContext();
 
@@ -37,11 +40,12 @@ const MyApp = () => {
           <Navbar />
           <div className="flex justify-between items-center">
             {location.pathname === '/' && <SearchBar />}
-            <div className="mr-12">
-              <Dropdown onSelect={handleSortBy} />
+            <div className="mr-1">
+            {location.pathname === '/' &&  <Dropdown onSelect={handleSortBy} />}
             </div>
           </div>
           <ReactRouter />
+
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/get-product" element={<ReadAllProduct />} />
@@ -54,7 +58,12 @@ const MyApp = () => {
             <Route path="/login" element={<AdminLogin />} />
             <Route path="/register" element={<AdminRegister />} />
             <Route path="/logout" element={<AdminLogout />} />
+            <Route path="/faq" element={<Faq/>} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/privacy-policy" element={<Policy />} />
+            
           </Routes>
+
         </div>
         <div>
           <Fot />
