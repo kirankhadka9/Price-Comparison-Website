@@ -81,7 +81,7 @@ const Contact = () => {
               value={formData.message}
               onChange={handleChange}
               rows="4"
-              className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500"
+              className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500 resize-none"
               required
             ></textarea>
           </div>
@@ -117,7 +117,7 @@ const Contact = () => {
               LinkedIn
             </a>
             <a
-              href="https://github.com"
+              href="https://github.com/surajshr03"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-500 hover:text-blue-700"
@@ -126,7 +126,7 @@ const Contact = () => {
             </a>
           </div>
           {/* Phone Number */}
-          <p className="text-center text-gray-700 mt-2">Phone: +1 123-456-7890</p>
+          <p className="text-center text-gray-700 mt-2">Phone: +977 986053577X</p>
         </div>
       </div>
     </div>

@@ -11,6 +11,7 @@ let productSchema = Schema({
     required: [true, "quantity is required."] },
   productId: { type: String,
      required: [false, "productId is required."] },
+     
 },{
   timestamps: true,
 });

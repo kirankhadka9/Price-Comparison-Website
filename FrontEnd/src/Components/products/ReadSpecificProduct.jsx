@@ -23,43 +23,42 @@ const ReadSpecificProduct = () => {
   }, [params.id]);
 
   return (
-    <div className="flex flex-col items-center mt-8">
-      <div className="mb-2">
-        <div className="w-40 h-50 relative mx-auto">
-          {product.image && (
-            <img
-              src={product.image}
-              alt="Product Image"
-              className="w-full h-full object-cover rounded-lg shadow-md"
-            />
-          )}
-        </div>
-        <div
-          onClick={() => {
-            navigate("/get-product");
-          }}
-          className="underline cursor-pointer hover:text-blue-500 mt-2"
+    <div className="container mx-auto mt-8">
+      <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between">
+        <div className="lg:mr-4 mb-4 lg:mb-0 lg:w-1/2">
+          <div className="text-left mb-4">
+            <h2 className="text-2xl font-bold mb-2">{product.title}</h2>
+            <p className="text-gray-600 mb-2">${product.price}</p>
+            <p className="text-gray-700 mb-2">{product.description}</p>
+            <p className="text-gray-600 mb-2">
+              Category: <span className="text-blue-500">{product.category}</span>
+            </p>
+            <p className="text-gray-600 mb-2">Rating: {product.rating?.rate}</p>
+          </div>
+          <div className="flex items-center justify-center mt-4">
+        <button
+          onClick={() => navigate("/get-product")}
+          className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
         >
           Go back
-        </div>
+        </button>
       </div>
+        </div>
 
-      <div className="text-left mb-2">
-        <p className="font-bold mb-2">Id: {product.id}</p>
-        <p className="font-bold mb-2">Price: ${product.price}</p>
-        <p className="font-bold mb-2">Rating: {product.rating?.rate}</p>
-        <p className="font-bold mb-2">Product View: {product.rating?.count}</p>
-        <p className="font-bold mb-2">
-          Category: <span className="underline">{product.category}</span>
-        </p>
-
-        <div className="flex mb-2">
-          <span className="font-bold pr-2">Description:</span>
-          <div className="border border-blue-500 p-2 rounded-md bg-blue-100 max-w-xs">
-            {product.description}
+        <div className="lg:w-1/2 lg:ml-8">
+          <div className="w-full h-30 lg:h-auto overflow-hidden rounded-lg shadow-md">
+            {product.image && (
+              <img
+                src={product.image}
+                alt="Product Image"
+                className="w-full h-full object-cover"
+              />
+            )}
           </div>
         </div>
       </div>
+
+     
     </div>
   );
 };
