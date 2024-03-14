@@ -4,40 +4,33 @@ import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { GlobalVariableContext } from "../../MyApp";
-
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   let global = useContext(GlobalVariableContext);
-
   let navigate = useNavigate();
-
   let onSubmit = async (e) => {
     e.preventDefault();
     let data = {
       email: email,
       password: password,
     };
-
     try {
       let result = await axios({
-        url: `http://localhost:8001/web-users/login`,
+        url: `http://localhost:8000/web-users/login`,
         method: "POST",
         data: data,
       });
-
       let token = result.data.data;
       localStorage.setItem("token", token);
       global.setToken(token);
-
       navigate("/");
-
     } catch (error) {
-      toast.error(error.response.data.message);
+      console.log(error)
+      toast.error(error.response.data);
       // toast.error(error.message);
     }
   };
-
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-green-500">
       <ToastContainer />
@@ -58,7 +51,6 @@ const AdminLogin = () => {
               className="mt-1 p-2 w-full rounded-md border-0 focus:outline-none focus:border-blue-500"
             />
           </div>
-
           <div>
             <label htmlFor="password" className="text-sm text-gray-700">
               Password
@@ -73,7 +65,6 @@ const AdminLogin = () => {
               className="mt-1 p-2 w-full rounded-md border-0 focus:outline-none focus:border-blue-500"
             />
           </div>
-
           <div>
             <button
               type="submit"
@@ -82,14 +73,12 @@ const AdminLogin = () => {
               Login
             </button>
           </div>
-
           <div className="text-center text-gray-800">
             Don't have an account?{" "}
             <Link to="/register" className="text-blue-500 hover:underline">
               Register
             </Link>
           </div>
-
           <div
             className="text-center mt-4 cursor-pointer text-blue-500 hover:underline"
             onClick={() => {
@@ -103,5 +92,4 @@ const AdminLogin = () => {
     </div>
   );
 };
-
 export default AdminLogin;

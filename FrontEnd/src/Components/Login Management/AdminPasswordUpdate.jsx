@@ -21,7 +21,7 @@ const AdminPasswordUpdate = () => {
 
     try {
       let result = await axios({
-        url: `http://localhost:8001/web-users/update-password`,
+        url: `http://localhost:8000/web-users/update-password`,
         method: "PATCH",
         data: data,
         headers: {

@@ -17,7 +17,7 @@ const ReadSpecificUser = () => {
             try {
 
                   let result = await axios({
-                        url:`http://localhost:8001/web-users/${id}`,
+                        url:`http://localhost:8000/web-users/${id}`,
                         method : "GET",
                         headers : {
                               Authorization : `Bearer ${token}`

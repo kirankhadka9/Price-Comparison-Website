@@ -33,6 +33,11 @@ const MyApp = () => {
     console.log('Sort by:', value);
   };
 
+  const handleConfirm = () => {
+    // Implement your confirmation logic here
+    console.log('Confirmed');
+  };
+
   return (
     <div className="AppM min-h-screen flex flex-col">
       <GlobalVariableContext.Provider value={{ token: token, setToken: setToken }}>
@@ -40,10 +45,14 @@ const MyApp = () => {
           <Navbar />
           <div className="flex justify-between items-center">
             {location.pathname === '/' && <SearchBar />}
-            <div className="mr-1">
-            {location.pathname === '/' &&  <Dropdown onSelect={handleSortBy} />}
+          </div>
+
+          <div className="flex justify-center">
+            <div className="mt-3">
+              {location.pathname === '/' && <Dropdown onSelect={handleSortBy} onConfirm={handleConfirm} />}
             </div>
           </div>
+
           <ReactRouter />
 
           <Routes>
@@ -58,12 +67,10 @@ const MyApp = () => {
             <Route path="/login" element={<AdminLogin />} />
             <Route path="/register" element={<AdminRegister />} />
             <Route path="/logout" element={<AdminLogout />} />
-            <Route path="/faq" element={<Faq/>} />
+            <Route path="/faq" element={<Faq />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy-policy" element={<Policy />} />
-            
           </Routes>
-
         </div>
         <div>
           <Fot />

@@ -13,7 +13,7 @@ const AdminProfile = () => {
             try {
 
                   let result = await axios({
-                        url:`http://localhost:8001/web-users/my-profile`,
+                        url:`http://localhost:8000/web-users/my-profile`,
                         method : "GET",
                         headers : {
                               Authorization : `Bearer ${token}`

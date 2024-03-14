@@ -10,7 +10,7 @@ const ReadAllUsers = () => {
 
   let getAllUser = async (e) => {
     let result = await axios({
-      url: `http://localhost:8001/web-users`,
+      url: `http://localhost:8000/web-users`,
       method: `GET`,
       headers: {
         Authorization: `Bearer ${token}`,
@@ -57,7 +57,7 @@ const ReadAllUsers = () => {
             onClick={async () => {
               try {
                 const result = await axios({
-                  url: `http://localhost:8001/web-users/${item._id}`,
+                  url: `http://localhost:8000/web-users/${item._id}`,
                   method: "DELETE",
                   headers: {
                     Authorization: `Bearer ${token}`,

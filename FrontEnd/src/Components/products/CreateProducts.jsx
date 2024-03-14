@@ -20,7 +20,7 @@ const CreateProducts = () => {
 
     try {
       let result = await axios({
-        url:`http://localhost:8001/products`,
+        url:`http://localhost:8000/products`,
         method : "POST",
         data : data ,
 

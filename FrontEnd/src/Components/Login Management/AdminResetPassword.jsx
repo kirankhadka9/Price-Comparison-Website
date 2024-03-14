@@ -17,7 +17,7 @@ const AdminResetPassword = () => {
         }
         try {
             let result = await axios({
-                url: `http://localhost:8001/web-users/reset-password`,
+                url: `http://localhost:8000/web-users/reset-password`,
                 method: `PATCH`,
                 data: data,
                 headers: {

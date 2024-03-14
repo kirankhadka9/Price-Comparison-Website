@@ -18,7 +18,7 @@ const AdminForgotPassword = () => {
 
     try {
       let result = await axios({
-        url: `http://localhost:8001/web-users/forgot-password`,
+        url: `http://localhost:8000/web-users/forgot-password`,
         method: "POST",
         data: data,
       });

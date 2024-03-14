@@ -1,14 +1,11 @@
-import React from "react";
-import ReadAllProduct from "../../products/ReadAllProducts";
+import React from 'react';
+import Filter from './Filter';
 
 const Home = () => {
   return (
     <div>
-      
       <div>
-      {/* <ReadAllProduct />{" "} */}
-
-
+        <Filter />
       </div>
     </div>
   );

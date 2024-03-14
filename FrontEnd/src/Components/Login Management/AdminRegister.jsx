@@ -34,7 +34,7 @@ const AdminRegister = () => {
 
     try {
       let result = await axios({
-        url: `http://localhost:8001/web-users`,
+        url: `http://localhost:8000/web-users`,
         method: "POST",
         data: data,
       });
@@ -49,7 +49,8 @@ const AdminRegister = () => {
         "A link has been sent to your email. Please click the given link to verify your email."
       );
     } catch (error) {
-      toast.error(error.message);
+      console.log(error);
+      toast.error(error.response.data.message);
     }
   };
 

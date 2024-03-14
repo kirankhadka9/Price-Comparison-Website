@@ -24,7 +24,7 @@ const UpdateProducts = () => {
 
     try {
       let result = await axios({
-        url:`http://localhost:8001/products/${params.id}`,
+        url:`http://localhost:8000/products/${params.id}`,
         method : "PATCH",
         data : data ,
 
@@ -65,7 +65,7 @@ const UpdateProducts = () => {
   };
   let getProduct = async () => {
     let result = await axios({
-      url: `http://localhost:8001/products/${params.id}`,
+      url: `http://localhost:8000/products/${params.id}`,
       method: "GET",
     });
     let data =result.data.result;
