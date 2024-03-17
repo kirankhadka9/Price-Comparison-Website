@@ -37,9 +37,8 @@ const Fot = () => {
           <div className="text-gray-400 mb-4">
             <h3 className="text-sl font-semibold mb-2">Popular Categories</h3>
             <ul className="text-sm">
-              <li><Link to="/category/apple" className="hover:text-teal-400">Apple</Link></li>
-              <li><Link to="/category/samsung" className="hover:text-teal-400">Samsung</Link></li>
-              <li><Link to="/category/dell" className="hover:text-teal-400">Dell</Link></li>
+              <li><Link to="/category/laptop" className="hover:text-teal-400">Laptop</Link></li>
+              <li><Link to="/category/mobile" className="hover:text-teal-400">Mobile</Link></li>
             </ul>
           </div>
 

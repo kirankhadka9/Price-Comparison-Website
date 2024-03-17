@@ -1,30 +1,43 @@
 import React, { useState } from 'react';
 
-const Dropdown = ({ onSelect, onConfirm }) => {
-  const [selectedFilters, setSelectedFilters] = useState({
-    price: '',
-    category: '',
-    rating: '',
-    sortBy: ''
-  });
-
-  const handleSelect = (filterType, value) => {
-    setSelectedFilters(prevState => ({
-      ...prevState,
-      [filterType]: value
-    }));
-  };
+const Dropdown = ({ products, setFilteredProducts }) => {
+  const [priceRange, setPriceRange] = useState('');
+  const [category, setCategory] = useState('');
+  const [rating, setRating] = useState('');
 
   const handleConfirm = () => {
-    onConfirm(selectedFilters);
+    // Filter products based on selected criteria
+    const filteredProducts = products.filter(product => {
+      let priceCondition = true;
+      let categoryCondition = true;
+      let ratingCondition = true;
+
+      if (priceRange) {
+        const [minPrice, maxPrice] = priceRange.split('-');
+        priceCondition = product.price >= parseInt(minPrice) && product.price <= parseInt(maxPrice);
+      }
+
+      if (category) {
+        categoryCondition = product.category.toLowerCase() === category.toLowerCase();
+      }
+
+      if (rating) {
+        ratingCondition = product.rating === parseInt(rating);
+      }
+
+      return priceCondition && categoryCondition && ratingCondition;
+    });
+
+    // Update the filtered products state using the prop function
+    setFilteredProducts(filteredProducts);
   };
 
   return (
-    <div className="flex flex-wrap items-center justify-center md:justify-start space-y-4 md:space-x-4 md:space-y-0 mt-4 md:mt-0">
+    <div className="flex flex-wrap items-center justify-center md:justify-start space-y-4 md:space-x-4 md:space-y-0 mt-4 md:mt-0 bg-white rounded-lg p-4 shadow-md">
       <div className="flex items-center space-x-4">
         <span className="text-gray-600">Price:</span>
         <select
-          onChange={(e) => handleSelect('price', e.target.value)}
+          onChange={(e) => setPriceRange(e.target.value)}
           className="bg-white border border-gray-300 rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           <option value="">All</option>
@@ -37,7 +50,7 @@ const Dropdown = ({ onSelect, onConfirm }) => {
       <div className="flex items-center space-x-4">
         <span className="text-gray-600">Category:</span>
         <select
-          onChange={(e) => handleSelect('category', e.target.value)}
+          onChange={(e) => setCategory(e.target.value)}
           className="bg-white border border-gray-300 rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           <option value="">All</option>
@@ -48,7 +61,7 @@ const Dropdown = ({ onSelect, onConfirm }) => {
       <div className="flex items-center space-x-4">
         <span className="text-gray-600">Rating:</span>
         <select
-          onChange={(e) => handleSelect('rating', e.target.value)}
+          onChange={(e) => setRating(e.target.value)}
           className="bg-white border border-gray-300 rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           <option value="">All</option>
@@ -59,21 +72,7 @@ const Dropdown = ({ onSelect, onConfirm }) => {
           <option value="5">5 Stars</option>
         </select>
       </div>
-      <div className="flex items-center space-x-4">
-        <span className="text-gray-600">Sort by:</span>
-        <select
-          onChange={(e) => handleSelect('sortBy', e.target.value)}
-          className="bg-white border border-gray-300 rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
-          <option value="">None</option>
-          <option value="lowprice">Low Price</option>
-          <option value="highprice">High Price</option>
-        </select>
-      </div>
-      <button
-        onClick={handleConfirm}
-        className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
-      >
+      <button onClick={handleConfirm} className="bg-green-500 text-white px-4 py-2 rounded mt-4">
         Confirm
       </button>
     </div>

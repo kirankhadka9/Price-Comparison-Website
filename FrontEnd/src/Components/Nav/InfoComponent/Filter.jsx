@@ -61,9 +61,7 @@ const Filter = ({ onConfirm }) => {
     getFilteredProducts();
   }, [priceRange, category, rating]);
 
-  const handleConfirm = () => {
-    onConfirm(filteredProducts);
-  };
+  
 
   return (
     <div className="container mx-auto mt-8">
@@ -95,9 +93,7 @@ const Filter = ({ onConfirm }) => {
           </div>
         ))}
       </div>
-      <button onClick={handleConfirm} className="bg-blue-500 text-white px-4 py-2 rounded mt-4">
-        Confirm
-      </button>
+      
     </div>
   );
 };

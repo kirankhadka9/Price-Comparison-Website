@@ -14,6 +14,9 @@ import CreateProducts from "./products/CreateProducts";
 import ReadAllProducts from "./products/ReadAllProducts";
 import ReadSpecificProduct from "./products/ReadSpecificProduct";
 import UpdateProducts from "./products/UpdateProducts";
+import NoProductFound from "./products/NoProductFound.jsx";
+import Laptop from "./Footer/Category/Laptop.jsx";
+import Mobile from "./Footer/Category/Mobile.jsx";
 
 const ReactRouter = () => {
   // let global =useContext(GlobalVariableContext);
@@ -146,12 +149,15 @@ const ReactRouter = () => {
                 </div>
               }
             ></Route>
-
-            {/* <Route path='*' element={<div>404 page not found</div>}></Route> */}
           </Route>
         </Route>
 
+        <Route path="not-found" element={<NoProductFound />}></Route>
+        <Route path="/category/laptop" element={<Laptop/>}></Route>
+        <Route path="/category/mobile" element={<Mobile/>}></Route>
+
         {/* <Route path="*" element={<div>404 page not found</div>}></Route> */}
+
       </Routes>
     </div>
   );

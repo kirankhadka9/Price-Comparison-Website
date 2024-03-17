@@ -1,22 +1,23 @@
 import { Schema } from "mongoose";
 
-//pi, userid, rating, description
+let reviewSchema = Schema({
+  fullName: {
+    type: String,
+    required: [true, "Your name is required."]
+  },
+  email: {
+    type: String,
+    required: [true, "Email is required."]
+  },
+  subject: {
+    type: String,
+    required: [true, "subject is required."]
+  },
+  message: {
+    type: String,
+    required: [true, "message is required."]
+  },
+  
+});
 
-let reviewSchema = Schema(
-      {
-            productId : {type : Schema.ObjectId,
-                  ref:"Product",//Product -> Mmodel ko name
-                  required :[true,"productId is required"]},
-            userId : {type : Schema.ObjectId,
-                  ref:"User",
-                  required :[true,"userId is required"]},
-            rating : {type : Number,
-                  required :[true,"rating is required"]},
-            description :{type : String,
-                  required :[true,"description is required"]}
-      },
-      {
-            timestamps: true,
-      }
-)
 export default reviewSchema;

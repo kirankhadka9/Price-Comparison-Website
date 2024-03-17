@@ -36,8 +36,90 @@ export let createProduct = async (req, res) => {
       });
     }
   };
+//  export const readAllProducts = async (req, res, next)=>{
+//     try{
+//         let search_term = req.query.search_term || ""
+//         // let job_level = req.query.job_level || ""
+//         // let page = parseInt(req.query.page) || 1
+//         // let per_page = parseInt(req.query.per_page) || 5
+//         // let total = await Job.aggregate(
+//         //     [
+//         //         // {
+//         //         //     $match: {
+//         //         //         $or: [
+//         //         //             { name: RegExp(search_term, "i") },
+//         //         //             { categories: RegExp(search_term, "i") }
+//         //         //         ]
+//         //         //     }
+//         //         // },
+//         //         {
+//         //             $match: {
+//         //                 $and: [
+//         //                     { $or: [{ name: RegExp(search_term, "i") }, { categories: RegExp(search_term, "i") }] },
+//         //                     { job_level: RegExp(job_level, "i") }
+//         //                 ]
+//         //             }
+//         //         },
+            
+//         //         {
+//         //             $lookup: {
+//         //                 from: "users",
+//         //                 localField: "created_by",
+//         //                 foreignField: "_id",
+//         //                 as: "created_by"
+//         //             }
+//         //         },
+//         //         {
+//         //             $unwind: "$created_by"
+//         //         },
+//         //         {
+//         //             $project: {
+//         //                 "created_by.password": 0,
+//         //                 "created_by.updatedAt": 0,
+//         //                 "created_by.role": 0,
+//         //             }
+//         //         },
+//         //         {
+//         //             $count: "total"
+//         //         }
+
+
+
+//         //     ]
+//         // )
+//         let result = await Product1.aggregate(
+//             [
+//                 {
+//               $match: {
+//                         $or: [
+//                             { title: RegExp(search_term, "i") },
+//                             { category: RegExp(search_term, "i") }
+//                         ]
+//                     }
+//                 },
+//             ]
+//         )
+//         // const totalJobs = total?.[0]?.total || 0;
+//         res.send({
+//             // meta_data: {
+//             //     // total: total[0].total,
+//             //     total: totalJobs,
+//             //     page,
+//             //     per_page
+//             // },
+//             result: result,
+//         })
+//     }
+//     catch(err){
+//         next(err);
+//     }
+// } 
+
+
+
   //-------------------USING B+ TREE SEARCHING
-export const searchByName = async (req, res) => {
+
+  export const searchByName = async (req, res) => {
   const key = req.params.productName.toLowerCase();
   const maxPrice = req.query.maxPrice ? parseFloat(req.query.maxPrice) : null;
   const rating = req.query.rating ? parseFloat(req.query.rating) : null;
@@ -88,6 +170,7 @@ export const searchByName = async (req, res) => {
 //   }
 // };
   //read by product id
+  
   export let readProduct = async (req, res) => {
     let productId = req.params.productId;
     try {
@@ -130,6 +213,7 @@ export const searchByName = async (req, res) => {
         });
     }
 };
+
 // cron.schedule('0 0 * * *', async () => {
 //   try {
 //       // Retrieve all products
@@ -177,6 +261,7 @@ export const searchByName = async (req, res) => {
 //   }
 // };
   //delete
+ 
   export let deleteProduct = async (req, res) => {
     let productId = req.params.productId;
     try {

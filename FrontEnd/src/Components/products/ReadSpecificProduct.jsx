@@ -42,16 +42,35 @@ const ReadSpecificProduct = () => {
       <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between">
         <div className="lg:mr-4 mb-4 lg:mb-0 lg:w-1/2">
           <div className="text-left mb-4">
-            <h2 className="text-3xl font-bold mb-2 text-gray-800">{product.title}</h2>
-            <p className="text-gray-600 mb-2">Price: <span className="font-semibold text-green-600">${product.price}</span></p>
+            <h2 className="text-3xl font-bold mb-2 text-gray-800">
+              {product.title}
+            </h2>
+            <p className="text-gray-600 mb-2">
+              Price:{" "}
+              <span className="font-semibold text-green-600">
+                ${product.price}
+              </span>
+            </p>
             <p className="text-gray-700 mb-4">{product.description}</p>
             <p className="text-gray-600 mb-2">
-              Category: <span className="text-blue-500">{product.category}</span>
+              Category:{" "}
+              <span className="text-blue-500">{product.category}</span>
             </p>
             <p className="text-gray-600 mb-2">Rating: {product.rating}</p>
+            <p className="text-gray-600 mb-2">
+              Link to buy:  
+              <a
+                href={product.link}
+                className="text-blue-500 hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Click here to buy
+              </a>
+            </p>
           </div>
           <div className="flex items-center justify-center">
-          <button
+            <button
               onClick={() => navigate("/")}
               className="bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-600 focus:outline-black focus:ring focus:border-gray-300"
             >
@@ -64,7 +83,6 @@ const ReadSpecificProduct = () => {
             >
               View Products
             </button>
-            
           </div>
         </div>
 
@@ -83,12 +101,22 @@ const ReadSpecificProduct = () => {
 
       {/* Additional product details */}
       <div className="bg-white p-6 rounded-lg shadow-md mt-8">
-        <h3 className="text-xl font-semibold mb-4 text-gray-800">Additional Details:</h3>
+        <h3 className="text-xl font-semibold mb-4 text-gray-800">
+          Additional Details:
+        </h3>
         <ul className="text-gray-600">
-          <li><span className="font-semibold">Pinned Shipped From:</span> {product.pinnedShippedFrom}</li>
           <li>
-            <span className="font-semibold">Product Source:</span> 
-            <a href={productSource} className="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">
+            <span className="font-semibold">Pinned Shipped From:</span>{" "}
+            {product.pinnedShippedFrom}
+          </li>
+          <li>
+            <span className="font-semibold">Product Source:</span>
+            <a
+              href={productSource}
+              className="text-blue-500 hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {productSource}
             </a>
           </li>

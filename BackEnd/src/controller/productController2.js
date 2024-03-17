@@ -34,17 +34,70 @@ export let readAllProducts = async (req, res) => {
     });
   }
 };
-export const searchByName = async (req, res) => {
-  try {
-      const key = req.params.productName.toLowerCase();
-      // Search B+ tree for products based on product name
-      const products = await bPlusTree2.search(key); // Await the result here
+
+
+  export const searchByName = async (req, res) => {
+    const key = req.params.productName.toLowerCase();
+    const maxPrice = req.query.maxPrice ? parseFloat(req.query.maxPrice) : null;
+    const rating = req.query.rating ? parseFloat(req.query.rating) : null;
+    const category = req.query.category || null;
+  
+    try {
+      let products = await bPlusTree2.search(key);
+ 
+      if (!products || products.length === 0) {
+        return res.status(404).json({ success: false, message: 'No products found' });
+      }
+  
+      products = products.filter(product => {
+        let match = true;
+        if (maxPrice) {
+          switch (maxPrice) {
+            case 100:
+              if (product.value.price > 100) {
+                match = false;
+              }
+              break;
+            case 500:
+              if (product.value.price <= 100 || product.value.price > 500) {
+                match = false;
+              }
+              break;
+            case 1000:
+              if (product.value.price <= 500 || product.value.price > 1000) {
+                match = false;
+              }
+              break;
+            default:
+              if (product.value.price <= 1000) {
+                match = false;
+              }
+          }
+        }
+  
+        if (rating && product.value.rating < rating) {
+          match = false;
+        }
+  
+        if (category && product.value.category.toLowerCase().trim() !== category.toLowerCase().trim()) {
+          match = false;
+        }
+  
+        return match;
+      });
+  
+      if (!products || products.length === 0) {
+        return res.status(404).json({ success: false, message: 'No products found matching the criteria' });
+      }
+  
       res.status(200).json(products);
-  } catch (error) {
-      console.error(error); // Log the error to console
+    } catch (error) {
+      console.error(error);
       res.status(500).json({ success: false, message: 'Error retrieving products' });
-  }
-};
+    }
+  };
+
+
 export const rangeQuery = async (req, res) => {
 const key = req.params.productName.toLowerCase();
 const maxPrice = req.query.maxPrice ? parseFloat(req.query.maxPrice) : null;
@@ -147,12 +200,3 @@ export let deleteProduct = async (req, res) => {
     });
   }
 };
-
-
-
-
-
-
-
-
-

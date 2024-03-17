@@ -1,7 +1,11 @@
 import React, { createContext, useState } from 'react';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import './App.css';
+// import Dropdown from './Components/Dropdown/Dropdown';
+import Faq from './Components/Footer/Faqq.jsx';
 import Fot from './Components/Footer/Fot.jsx';
+import Policy from './Components/Footer/Policy.jsx';
+import Terms from './Components/Footer/Term.jsx';
 import AdminLogin from './Components/Login Management/AdminLogin.jsx';
 import AdminLogout from './Components/Login Management/AdminLogout.jsx';
 import AdminPasswordUpdate from './Components/Login Management/AdminPasswordUpdate.jsx';
@@ -16,22 +20,17 @@ import ReactRouter from './Components/ReactRouter';
 import SearchBar from './Components/SearchBar/SearchBar.jsx';
 import ReadAllProduct from './Components/products/ReadAllProducts.jsx';
 import ReadSpecificProduct from './Components/products/ReadSpecificProduct.jsx';
-import Dropdown from './Components/Dropdown/Dropdown';
-import Terms from './Components/Footer/Term.jsx';
-import Policy from './Components/Footer/Policy.jsx';
-import Faq from './Components/Footer/Faqq.jsx';
 
 export let GlobalVariableContext = createContext();
 
 const MyApp = () => {
   const [token, setToken] = useState(localStorage.getItem('token'));
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleSortBy = (value) => {
-    // Implement your sorting logic here
-    console.log('Sort by:', value);
-  };
+ 
+
 
   const handleConfirm = () => {
     // Implement your confirmation logic here
@@ -43,20 +42,21 @@ const MyApp = () => {
       <GlobalVariableContext.Provider value={{ token: token, setToken: setToken }}>
         <div className="App flex-grow">
           <Navbar />
-          <div className="flex justify-between items-center">
-            {location.pathname === '/' && <SearchBar />}
-          </div>
+          <div className="flex justify-center items-center mt-4">
+  {location.pathname === '/' && <SearchBar setFilteredProducts={setFilteredProducts} />}
+</div>
 
-          <div className="flex justify-center">
+
+          {/* <div className="flex justify-center">
             <div className="mt-3">
-              {location.pathname === '/' && <Dropdown onSelect={handleSortBy} onConfirm={handleConfirm} />}
+              {location.pathname === '/' && <Dropdown onConfirm={handleConfirm} />}
             </div>
-          </div>
+          </div> */}
 
           <ReactRouter />
 
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home filteredProducts={filteredProducts} />} />
             <Route path="/get-product" element={<ReadAllProduct />} />
             <Route path="/get-product/:id" element={<ReadSpecificProduct />} />
             <Route path="/about" element={<About />} />
@@ -70,6 +70,7 @@ const MyApp = () => {
             <Route path="/faq" element={<Faq />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy-policy" element={<Policy />} />
+            
           </Routes>
         </div>
         <div>

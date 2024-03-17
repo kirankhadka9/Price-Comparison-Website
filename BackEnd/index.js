@@ -41,6 +41,7 @@ import productRouter2 from './src/router/productRouter2.js';
 import { BPlusTree as BPlusTree1, fetchProductsFromDatabase as fetchProductsFromDatabase1 } from './src/BPlusTree/BPlusTree11.js';
 import { BPlusTree as BPlusTree2, fetchProductsFromDatabase as fetchProductsFromDatabase2 } from './src/BPlusTree/BPlusTree33.js';
 import mongoose from 'mongoose';
+import reviewRouter from './src/router/reviewRouter.js';
 const expressApp = express();
 expressApp.use(express.json());
 expressApp.use(express.static('./public'));
@@ -88,6 +89,7 @@ mongoose.connect('mongodb://0.0.0.0:27017/7th')
 async function startServer() {
     expressApp.use('/products1', productRouter1);
     expressApp.use('/products2', productRouter2);
+    expressApp.use('/reviews', reviewRouter);
     expressApp.use('/web-users', webuserRouter);
     expressApp.use('/products1/products-search/:productName', productRouter1);
     expressApp.use('/products2/products-search/:productName', productRouter2);
