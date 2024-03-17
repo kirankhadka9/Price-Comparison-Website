@@ -15,7 +15,7 @@ const Home = ({ filteredProducts }) => {
           <div
             key={product._id} 
             className="border border-green-500 rounded p-2 flex flex-col transition duration-300 hover:shadow-md hover:bg-green-100 cursor-pointer w-1/4 mb-4 mx-4"
-            onClick={() => navigate(`/get-product/${product._id}`)}
+            onClick={() => navigate(`/get-product/${product.value._id}`)}
           >
             <div className="w-full h-56 mb-2">
               {product.value.image && (
